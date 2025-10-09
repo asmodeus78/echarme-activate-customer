@@ -48,15 +48,19 @@ app.post('/apps/account-activation', async (req, res) => {
         if (customer) {
             // Stati possibili (REST): enabled, disabled, invited, declined
             // Se non è già enabled, invia l'invito/attivazione
+            console.log("STATE: " + customer.state);
             if (customer.state !== 'enabled') {
+                console.log("invito inviato");
                 try {
                     await axios.post(
                         `${baseUrl}/customers/${customer.id}/send_invite.json`,
                         { customer_invite: {} },
                         { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
                     );
+                    console.log("invito inviato");
                 } catch (e) {
                     // Se già invitato o errore, non rivelare nulla all’utente
+                    console.log("errore");
                 }
             }
         }
