@@ -1,0 +1,1 @@
+# echarme-activate-customer
