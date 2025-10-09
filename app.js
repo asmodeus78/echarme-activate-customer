@@ -63,13 +63,13 @@ app.post('/apps/account-activation', async (req, res) => {
                 } catch (e) {
                     // Se già invitato o errore, non rivelare nulla all’utente
                     console.log(e);
-                    res.json({ ok: false });
+                    res.json({ ok: false, msg:'Errore di connessione riprova tra qualche minuto.' });
                 }
             }else{
-                res.json({ ok: false });
+                res.json({ ok: false, msg:'Account gia attivo. In questo caso è necessario tornare alla schermata di Login/Registrazione e effettuare il recupero della password cliccando su PASSWORD DIMENTICATA.' });
             }
         }else{
-            res.json({ ok: false });
+            res.json({ ok: false, msg:'E-mail non riconosciuta, contatta l\'assistenza clienti.'});
         }
 
         // Risposta sempre generica
