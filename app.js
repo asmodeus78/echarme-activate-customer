@@ -59,18 +59,24 @@ app.post('/apps/account-activation', async (req, res) => {
                         { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
                     );
                     console.log("invito inviato");
+                    res.json({ ok: true });
                 } catch (e) {
                     // Se già invitato o errore, non rivelare nulla all’utente
                     console.log(e);
+                    res.json({ ok: false });
                 }
+            }else{
+                res.json({ ok: false });
             }
+        }else{
+            res.json({ ok: false });
         }
 
         // Risposta sempre generica
-        res.json({ ok: true });
+        
     } catch (e) {
         // Log interno, risposta generica all'utente
-        res.json({ ok: true });
+        res.json({ ok: false });
     }
 });
 
