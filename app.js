@@ -2,11 +2,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const cors = require('cors');
 
 // Imposta: TOKEN_ADMIN per il negozio (o recuperalo dinamicamente per ogni shop)
 const ADMIN_API_VERSION = '2025-07';
 
 const app = express();
+app.use(cors());
+app.use(function (req,res, next)){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Methods",
+        "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+    );
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    next();
+}
+
+
+
+
 app.use(bodyParser.json());
 
 // Facoltativo: middleware per verificare la firma dell'App Proxy (HMAC)
