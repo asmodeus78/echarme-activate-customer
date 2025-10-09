@@ -36,6 +36,7 @@ app.post('/apps/account-activation', async (req, res) => {
         const ACCESS_TOKEN = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN;
 
         const baseUrl = `https://${shop}/admin/api/${ADMIN_API_VERSION}`;
+        
 
         // 1) Cerca cliente per email
         const search = await axios.get(`${baseUrl}/customers/search.json`, {
@@ -50,7 +51,7 @@ app.post('/apps/account-activation', async (req, res) => {
             // Se non è già enabled, invia l'invito/attivazione
             console.log("STATE: " + customer.state);
             if (customer.state !== 'enabled') {
-                console.log("invito inviato");
+                console.log("invito da inviare");
                 try {
                     await axios.post(
                         `${baseUrl}/customers/${customer.id}/send_invite.json`,
@@ -60,7 +61,7 @@ app.post('/apps/account-activation', async (req, res) => {
                     console.log("invito inviato");
                 } catch (e) {
                     // Se già invitato o errore, non rivelare nulla all’utente
-                    console.log("errore");
+                    console.log(e);
                 }
             }
         }
