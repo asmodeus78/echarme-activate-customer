@@ -66,7 +66,7 @@ app.post('/apps/account-activation', async (req, res) => {
                     res.json({ ok: false, msg:'Errore di connessione riprova tra qualche minuto.' });
                 }
             }else{
-                res.json({ ok: false, msg:'Account gia attivo. In questo caso è necessario tornare alla schermata di Login/Registrazione e effettuare il recupero della password cliccando su <a href="https://www.echarme.it/account/login#recover">PASSWORD DIMENTICATA.</a>' });
+                res.json({ ok: false, msg:'old' });
             }
         }else{
             res.json({ ok: false, msg:'E-mail non riconosciuta, contatta l\'assistenza clienti.'});
