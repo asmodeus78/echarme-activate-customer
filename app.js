@@ -9,7 +9,7 @@ const ADMIN_API_VERSION = '2025-07';
 
 const app = express();
 app.use(cors());
-app.use(function (req,res, next)){
+app.use(function (req,res, next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
         "Access-Control-Allow-Methods",
@@ -20,7 +20,7 @@ app.use(function (req,res, next)){
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     );
     next();
-}
+});
 
 
 
