@@ -24,6 +24,9 @@ app.post('/apps/account-activation', async (req, res) => {
         const shop = req.query.shop; // fornito dall’App Proxy
         const email = (req.body.email || '').trim().toLowerCase();
 
+        console.log('il tuo shop ' + shop);
+        console.log('la tua mail: ' + email);
+
         if (!shop || !email) {
             // Risposta generica
             return res.json({ ok: true });
