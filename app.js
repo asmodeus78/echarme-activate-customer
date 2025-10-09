@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 app.post('/apps/account-activation', async (req, res) => {
     try {
-        const shop = req.query.shop; // fornito dall’App Proxy
+        const shop = "echarme-official.myshopify.com"; // fornito dall’App Proxy
         const email = (req.body.email || '').trim().toLowerCase();
 
         console.log('il tuo shop ' + shop);
