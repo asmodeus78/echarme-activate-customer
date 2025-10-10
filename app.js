@@ -66,10 +66,10 @@ app.post('/apps/account-activation', async (req, res) => {
                     res.json({ ok: false, msg:'Errore di connessione riprova tra qualche minuto.' });
                 }
             }else{
-                res.json({ ok: false, msg:'old' });
+                res.json({ ok: false, msg:"Account gia attivo. In questo caso è necessario tornare alla <a href='https://www.echarme.it/account/login#login'><b><u>Schermata di login</u></b></a> o <br>effettuare il recupero della password cliccando su <a href='https://www.echarme.it/account/login#recover'><b><u>Password dimenticata.</u></b></a>" });
             }
         }else{
-            res.json({ ok: false, msg:"E-mail non riconosciuta, <a href='https://www.echarme.it/account/register'>crea un account</a>."});
+            res.json({ ok: false, msg:"E-mail non riconosciuta, <a href='https://www.echarme.it/account/register'><b><u>Crea un account</u></b></a>."});
         }
 
         // Risposta sempre generica
