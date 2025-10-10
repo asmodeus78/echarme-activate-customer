@@ -69,7 +69,7 @@ app.post('/apps/account-activation', async (req, res) => {
                 res.json({ ok: false, msg:'old' });
             }
         }else{
-            res.json({ ok: false, msg:'E-mail non riconosciuta, contatta l\'assistenza clienti.'});
+            res.json({ ok: false, msg:"E-mail non riconosciuta, <a href='https://www.echarme.it/account/register'>crea un account</a>."});
         }
 
         // Risposta sempre generica
