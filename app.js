@@ -133,6 +133,7 @@ app.post('/apps/account-retrive', async (req, res) => {
                 }
             }else{
                 // recupera la password
+                console.log("inizio recupero pass to shopify");
                 await axios.post(
                     `${baseUrl}/customers/${customer.id}/send_account_recovery.json`,
                     { customer: { id: customer.id } },
