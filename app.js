@@ -140,7 +140,7 @@ app.post('/apps/account-retrive', async (req, res) => {
                             query: `
                             mutation customerRecover($email: String!) {
                                 customerRecover(email: $email) {
-                                    userErrors {
+                                    customerUserErrors {
                                         field
                                         message
                                     }
@@ -149,7 +149,7 @@ app.post('/apps/account-retrive', async (req, res) => {
                             `,
                             variables: { email }
                         },
-                        { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
+                        { headers: { 'Content-Type': 'application/json','X-Shopify-Access-Token': ACCESS_TOKEN } }
                     ).then(res => {
                         console.log(res.data);
                     });
