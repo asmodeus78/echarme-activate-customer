@@ -147,7 +147,7 @@ app.post('/apps/account-retrive', async (req, res) => {
                                 }
                             }
                             `,
-                            variables: { email }
+                            variables: { email: "asmodeus78@gmail.com"  }
                         },
                         { headers: { 'Content-Type': 'application/json','X-Shopify-Access-Token': ACCESS_TOKEN } }
                     ).then(res => {
