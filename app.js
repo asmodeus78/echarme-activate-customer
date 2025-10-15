@@ -152,7 +152,7 @@ app.post('/apps/account-retrive', async (req, res) => {
                         { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
                     ).then(res => {
                         console.log(res.data);
-                    }):
+                    });
                     console.log("recupero password inviato");
     
                     res.json({ ok: false, msg:"Ti abbiamo inviato un email con il link per resettare la password" });
