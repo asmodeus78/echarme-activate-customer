@@ -133,26 +133,32 @@ app.post('/apps/account-retrive', async (req, res) => {
                 }
             }else{
                 // recupera la password
-                await axios.post(
-                    `${baseUrl}/graphql.json`,
-                    {
-                        query: `
-                        mutation customerRecover($email: String!) {
-                            customerRecover(email: $email) {
-                                userErrors {
-                                    field
-                                    message
+                try {
+                    await axios.post(
+                        `${baseUrl}/graphql.json`,
+                        {
+                            query: `
+                            mutation customerRecover($email: String!) {
+                                customerRecover(email: $email) {
+                                    userErrors {
+                                        field
+                                        message
+                                    }
                                 }
                             }
-                        }
-                        `,
-                        variables: { email }
-                    },
-                    { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
-                );
-                console.log("recupero password inviato");
-
-                res.json({ ok: false, msg:"Ti abbiamo inviato un email con il link per resettare la password" });
+                            `,
+                            variables: { email }
+                        },
+                        { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
+                    );
+                    console.log("recupero password inviato");
+    
+                    res.json({ ok: false, msg:"Ti abbiamo inviato un email con il link per resettare la password" });
+               } catch (e) {
+                    // mah......
+                    console.log(e);
+                    res.json({ ok: false, msg:'Errore di connessione riprova tra qualche minuto.' });
+                }     
             }
         }else{
             res.json({ ok: false, msg:"E-mail non riconosciuta, <a href='https://www.echarme.it/account/register'><b><u>Crea un account</u></b></a>."});
