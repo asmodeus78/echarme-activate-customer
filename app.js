@@ -133,10 +133,21 @@ app.post('/apps/account-retrive', async (req, res) => {
                 }
             }else{
                 // recupera la password
-                console.log("inizio recupero pass to shopify");
                 await axios.post(
-                    `${baseUrl}/customers/${customer.id}/send_account_recovery.json`,
-                    { customer: { id: customer.id } },
+                    `${baseUrl}/graphql.json`,
+                    {
+                        query: `
+                        mutation customerRecover($email: String!) {
+                            customerRecover(email: $email) {
+                                userErrors {
+                                    field
+                                    message
+                                }
+                            }
+                        }
+                        `,
+                        variables: { email }
+                    },
                     { headers: { 'X-Shopify-Access-Token': ACCESS_TOKEN } }
                 );
                 console.log("recupero password inviato");
